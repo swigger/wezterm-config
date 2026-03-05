@@ -12,29 +12,39 @@ local options = {
 }
 
 if platform.is_win then
+   options.default_ssh_auth_sock = "\\\\.\\pipe\\openssh-ssh-agent"
+   options.ssh_backend = "Ssh2"
    options.ssh_domains = {
       {
          name = 'ssh:wsl',
-         remote_address = 'localhost',
+         remote_address = '127.0.0.1:2222',
          multiplexing = 'None',
          default_prog = { 'fish', '-l' },
          assume_shell = 'Posix',
       },
+	  {
+		  name='major',
+		  remote_address='192.168.1.2:2222',
+		  multiplexing = 'None',
+		  assume_shell = 'Posix'
+	  },
+	  {
+		  name='ssh:202',
+		  remote_address='192.168.1.202',
+		  multiplexing = 'None',
+		  assume_shell = 'Posix'
+	  }
    }
-
    options.wsl_domains = {
       {
-         name = 'wsl:ubuntu-fish',
-         distribution = 'Ubuntu',
-         username = 'kevin',
-         default_cwd = '/home/kevin',
-         default_prog = { 'fish', '-l' },
+         name = 'wsl:default',
+         distribution = 'Ubuntu-22.04',
+         default_cwd = '/home/xungeng',
       },
       {
          name = 'wsl:ubuntu-bash',
-         distribution = 'Ubuntu',
-         username = 'kevin',
-         default_cwd = '/home/kevin',
+         distribution = 'Ubuntu-22.04',
+         default_cwd = '/home/xungeng',
          default_prog = { 'bash', '-l' },
       },
    }
