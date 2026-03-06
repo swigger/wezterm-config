@@ -13,7 +13,7 @@ local options = {
 
 if platform.is_win then
    options.default_ssh_auth_sock = "\\\\.\\pipe\\openssh-ssh-agent"
-   options.ssh_backend = "Ssh2"
+   options.ssh_backend = "LibSsh"
    options.ssh_domains = {
       {
          name = 'ssh:wsl',
@@ -21,18 +21,27 @@ if platform.is_win then
          multiplexing = 'None',
          default_prog = { 'fish', '-l' },
          assume_shell = 'Posix',
+         ssh_option = {
+            forwardagent = "yes",
+         },
       },
 	  {
 		  name='major',
 		  remote_address='192.168.1.2:2222',
 		  multiplexing = 'None',
-		  assume_shell = 'Posix'
+		  assume_shell = 'Posix',
+		  ssh_option = {
+			 forwardagent = "yes",
+		  },
 	  },
 	  {
 		  name='ssh:202',
 		  remote_address='192.168.1.202',
 		  multiplexing = 'None',
-		  assume_shell = 'Posix'
+		  assume_shell = 'Posix',
+		  ssh_option = {
+			 forwardagent = "yes",
+		  },
 	  }
    }
    options.wsl_domains = {
