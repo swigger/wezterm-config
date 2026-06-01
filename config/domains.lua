@@ -35,12 +35,13 @@ if platform.is_win then
 		  },
 	  },
 	  {
-		  name='ssh:202',
-		  remote_address='192.168.1.202',
+		  name='ssh:qh-mac',
+		  remote_address='192.168.30.102:22222',
 		  multiplexing = 'None',
 		  assume_shell = 'Posix',
 		  ssh_option = {
 			 forwardagent = "yes",
+          proxycommand = "rustnc -x 127.0.0.1:5102 -X5 192.168.30.91 22222",
 		  },
 	  }
    }
