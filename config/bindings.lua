@@ -250,6 +250,28 @@ local mouse_bindings = {
       mods = 'CTRL',
       action = act.OpenLinkAtMouseCursor,
    },
+
+   -- disable copy-on-select: override the default Left-Up bindings that copy
+   -- the selection to the clipboard/primary selection. Selection still works
+   -- visually; use SUPER+c / CTRL+SHIFT+c to copy explicitly.
+   -- single click: still open a link if released over one, but don't copy.
+   {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'NONE',
+      action = act.Nop,
+   },
+   -- double click (word select): don't copy.
+   {
+      event = { Up = { streak = 2, button = 'Left' } },
+      mods = 'NONE',
+      action = act.Nop,
+   },
+   -- triple click (line select): don't copy.
+   {
+      event = { Up = { streak = 3, button = 'Left' } },
+      mods = 'NONE',
+      action = act.Nop,
+   },
 }
 
 return {
